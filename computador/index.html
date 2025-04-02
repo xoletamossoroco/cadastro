@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .card {
+            width: 350px;
+            padding: 20px;
+            border-radius: 20px;
+            background: #e0e0e0;
+            box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .endereco {
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="container">
+            <h2>Cadastro</h2>
+            <form id="cadastroForm">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" required>
+
+                <label for="sobrenome">Sobrenome:</label>
+                <input type="text" id="sobrenome" required>
+
+                <label for="nascimento">Data de Nascimento:</label>
+                <input type="date" id="nascimento" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" required>
+
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" required>
+
+                <label for="confirmaSenha">Confirmar Senha:</label>
+                <input type="password" id="confirmaSenha" required>
+
+                <label>Gênero:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="genero" required> Feminino</label>
+                    <label><input type="radio" name="genero"> Masculino</label>
+                    <label><input type="radio" name="genero"> Prefiro não dizer</label>
+                </div>
+
+                <label for="tipoResidencia">Tipo de Residência:</label>
+                <select id="tipoResidencia" required onchange="mostrarEndereco()">
+                    <option value="">Selecione</option>
+                    <option value="casa">Casa</option>
+                    <option value="apartamento">Apartamento</option>
+                </select>
+
+                <div id="enderecoCasa" class="endereco">
+                    <label for="rua">Rua:</label>
+                    <input type="text" id="rua">
+                    <label for="numero">Número:</label>
+                    <input type="text" id="numero">
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" id="bairro">
+                </div>
+
+                <div id="enderecoApartamento" class="endereco">
+                    <label for="apartamento">Número do Apartamento:</label>
+                    <input type="text" id="apartamento">
+                    <label for="predio">Nome do Prédio:</label>
+                    <input type="text" id="predio">
+                </div>
+
+                <button type="submit">Confirmar e Entrar</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function mostrarEndereco() {
+            let tipo = document.getElementById("tipoResidencia").value;
+            document.getElementById("enderecoCasa").style.display = tipo === "casa" ? "block" : "none";
+            document.getElementById("enderecoApartamento").style.display = tipo === "apartamento" ? "block" : "none";
+        }
+    </script>
+</body>
+</html>
+
